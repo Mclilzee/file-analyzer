@@ -1,19 +1,37 @@
 package analyzer;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 
 public class Main {
 
     public static void main(String[] args) {
-        String filename = args[0];
-        String pattern = args[1];
+        Path path = Paths.get(args[0]);
+        Pattern pattern = Pattern.compile(args[1]);
         String output = args[2];
 
-        if (filename.matches(pattern)) {
+        if (patternFound(path, pattern)) {
             System.out.println(output);
         } else {
             System.out.println("Unknown file type");
+        }
+    }
+
+    private static boolean patternFound(Path path, Pattern pattern) {
+        try (InputStream inputStream = Files.newInputStream(path)) {
+            StringBuilder content = new StringBuilder();
+            for (byte eachByte : inputStream.readAllBytes()) {
+                content.append((char) eachByte);
+            }
+
+            return pattern.matcher(content.toString()).find();
+        } catch (IOException ex) {
+            System.out.println("Failed finding file");
+            return false;
         }
     }
 }

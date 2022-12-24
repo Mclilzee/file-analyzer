@@ -35,7 +35,7 @@ class MainTest {
 
     @Test
     void patternNotFoundPrintsUnknown() {
-        String[] args = {"src/test/java/analyzer/Emad Ali Lebenslauf.pdf", "Pattern to not be found", "PDF document"};
+        String[] args = {"src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
         Main.main(args);
 
         String expected = "Unknown file type" + System.lineSeparator();

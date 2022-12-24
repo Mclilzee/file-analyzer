@@ -23,12 +23,9 @@ public class Main {
 
     private static boolean patternFound(Path path, Pattern pattern) {
         try (InputStream inputStream = Files.newInputStream(path)) {
-            StringBuilder content = new StringBuilder();
-            for (byte eachByte : inputStream.readAllBytes()) {
-                content.append((char) eachByte);
-            }
+            String content = new String(inputStream.readAllBytes());
 
-            return pattern.matcher(content.toString()).find();
+            return pattern.matcher(content).find();
         } catch (IOException ex) {
             System.out.println("Failed finding file");
             return false;

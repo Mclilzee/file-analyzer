@@ -25,7 +25,7 @@ class MainTest {
 
     @Test
     void correctPatternFound() {
-        String[] args = {"src/test/java/analyzer/Emad Ali Lebenslauf.pdf", "%PDF-", "PDF document"};
+        String[] args = {"--naive", "src/test/java/analyzer/Emad Ali Lebenslauf.pdf", "%PDF-", "PDF document"};
         Main.main(args);
 
         String expected = "PDF document" + System.lineSeparator();
@@ -35,7 +35,7 @@ class MainTest {
 
     @Test
     void patternNotFoundPrintsUnknown() {
-        String[] args = {"src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
+        String[] args = {"--naive", "src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
         Main.main(args);
 
         String expected = "Unknown file type" + System.lineSeparator();

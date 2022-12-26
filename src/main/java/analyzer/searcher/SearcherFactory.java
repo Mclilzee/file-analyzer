@@ -1,4 +1,4 @@
-package analyzer;
+package analyzer.searcher;
 
 public class SearcherFactory {
 

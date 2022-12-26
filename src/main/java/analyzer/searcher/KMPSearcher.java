@@ -1,4 +1,6 @@
-package analyzer;
+package analyzer.searcher;
+
+import java.time.Duration;
 
 public class KMPSearcher implements SubstringSearcher {
 

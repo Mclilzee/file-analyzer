@@ -1,5 +1,8 @@
 package analyzer;
 
+import analyzer.searcher.SearcherFactory;
+import analyzer.searcher.SubstringSearcher;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;

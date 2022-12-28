@@ -17,6 +17,22 @@ class NaiveSearcherTest {
     }
 
     @Test
+    void findStringAtTheEnd() {
+        String content = "Something to look for";
+        String pattern = "for";
+
+        assertTrue(searcher.containsSubstring(content, pattern));
+    }
+
+    @Test
+    void findStringAtTheBeggining() {
+        String content = "I'm looking for something very special";
+        String pattern = "I'm looking";
+
+        assertTrue(searcher.containsSubstring(content, pattern));
+    }
+
+    @Test
     void doesNotContainString() {
         String content = "Something to find here";
         String pattern = "SpongeBob";

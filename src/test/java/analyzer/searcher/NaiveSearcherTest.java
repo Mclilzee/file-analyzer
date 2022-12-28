@@ -25,7 +25,7 @@ class NaiveSearcherTest {
     }
 
     @Test
-    void findStringAtTheBeggining() {
+    void findStringAtTheBeginning() {
         String content = "I'm looking for something very special";
         String pattern = "I'm looking";
 

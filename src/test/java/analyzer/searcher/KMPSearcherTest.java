@@ -25,6 +25,22 @@ class KMPSearcherTest {
     }
 
     @Test
+    void findStringAtTheEnd() {
+        String content = "Something to look for";
+        String pattern = "for";
+
+        assertTrue(searcher.containsSubstring(content, pattern));
+    }
+
+    @Test
+    void findStringAtTheBeginning() {
+        String content = "I'm looking for something very special";
+        String pattern = "I'm looking";
+
+        assertTrue(searcher.containsSubstring(content, pattern));
+    }
+
+    @Test
     void doesNotContainSubstring() {
         String content = "Some string to search that does not contain what you are looking for";
         String pattern = "Patrick";

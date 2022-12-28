@@ -28,9 +28,10 @@ class MainTest {
         String[] args = {"--naive", "src/test/java/analyzer/pdfTest.pdf", "%PDF-", "PDF document"};
         Main.main(args);
 
-        String expected = "PDF document" + System.lineSeparator();
+        String output = outputStream.toString();
+        String expected = "PDF document\\r?\\nIt took \\d+(\\.\\d+)? seconds\\r?\\n";
 
-        assertEquals(expected, outputStream.toString());
+        assertTrue(outputStream.toString().matches(expected));
     }
 
     @Test
@@ -38,9 +39,9 @@ class MainTest {
         String[] args = {"--naive", "src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
         Main.main(args);
 
-        String expected = "Unknown file type" + System.lineSeparator();
+        String expected = "Unknown file type\\r?\\nIt took \\d+(\\.\\d+)? seconds\\r?\\n";
 
-        assertEquals(expected, outputStream.toString());
+        assertTrue(outputStream.toString().matches(expected));
     }
 
 }

@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
+import java.time.Duration;
 
 public class Main {
 
@@ -18,10 +20,11 @@ public class Main {
         String output = args[3];
         SubstringSearcher searcher = SearcherFactory.getSearcher(algorithm);
 
+        Duration startDuration = Duration.ofMillis(System.currentTimeMillis());
         if (searcher.containsSubstring(content, pattern)) {
-            System.out.println(output);
+            printOutput(output, startDuration);
         } else {
-            System.out.println("Unknown file type");
+            printOutput("Unknown file type", startDuration);
         }
     }
 
@@ -32,6 +35,18 @@ public class Main {
         } catch (IOException ex) {
             return "";
         }
+    }
+
+    private static void printOutput(String output, Duration startDuration) {
+        Duration duration = Duration.ofMillis(System.currentTimeMillis()).minus(startDuration);
+        String seconds = String.valueOf(duration.toSecondsPart());
+        String milis = String.valueOf(duration.toMillisPart());
+        double time = Double.parseDouble(seconds + "." + milis);
+
+        DecimalFormat decimalFormatter = new DecimalFormat("0");
+        decimalFormatter.setMaximumFractionDigits(3);
+
+        System.out.printf("%s%nIt took %s seconds%n", output, decimalFormatter.format(time));
     }
 
 }

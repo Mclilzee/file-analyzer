@@ -17,9 +17,25 @@ class KMPSearcherTest {
     }
 
     @Test
+    void containsSubstringWithPrefix() {
+        String content = "abxabcabcaby";
+        String pattern = "abcaby";
+
+        assertTrue(searcher.containsSubstring(content, pattern));
+    }
+
+    @Test
     void doesNotContainSubstring() {
         String content = "Some string to search that does not contain what you are looking for";
         String pattern = "Patrick";
+
+        assertFalse(searcher.containsSubstring(content, pattern));
+    }
+
+    @Test
+    void doesNotContainEmptyString() {
+        String content = "";
+        String pattern = "something";
 
         assertFalse(searcher.containsSubstring(content, pattern));
     }

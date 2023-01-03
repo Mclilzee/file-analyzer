@@ -53,11 +53,10 @@ public class Main {
 
     private static void printOutput(File file) {
         String content = getContentFromFile(file);
-        System.out.print(file.getName() + ": ");
         if (searcher.containsSubstring(content, pattern)) {
-            System.out.println(output);
+            System.out.println(file.getName() + ": " + output);
         } else {
-            System.out.println("Unknown file type");
+            System.out.println(file.getName() + ": Unknown file type");
         }
     }
 }

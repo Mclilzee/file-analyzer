@@ -38,7 +38,6 @@ class MainTest {
         String[] args = {"src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
         Main.main(args);
 
-        Thread.sleep(500);
         String expected = "pdfTest.pdf: Unknown file type" + System.lineSeparator();
 
         assertEquals(expected, outputStream.toString());
@@ -49,7 +48,6 @@ class MainTest {
         String[] args = {"src/test/java/analyzer/files/", "%PDF-", "PDF document"};
         Main.main(args);
 
-        Thread.sleep(500);
         String expectedFirstFile = "notpdf.txt: Unknown file type" + System.lineSeparator();
         String expectedSecondFile = "pdfTest.pdf: PDF document" + System.lineSeparator();
 

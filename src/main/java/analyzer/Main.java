@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -18,12 +19,15 @@ public class Main {
     private static String output = "";
     private static String pattern = "";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         pattern = args[1];
         output = args[2];
         Path path = Paths.get(args[0]);
 
         printFiles(path);
+
+        executorService.shutdown();
+        while (!executorService.awaitTermination(100, TimeUnit.MILLISECONDS)) {}
     }
 
     private static void printFiles(Path path) {
@@ -34,7 +38,7 @@ public class Main {
                    .map(Paths::get)
                    .forEach(Main::printFiles);
        } else {
-           executorService.submit(() -> printOutput(file));
+           executorService.execute(() -> printOutput(file));
        }
 
     }

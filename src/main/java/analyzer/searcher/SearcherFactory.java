@@ -8,5 +8,4 @@ public class SearcherFactory {
             default -> new KMPSearcher();
         };
     }
-
 }

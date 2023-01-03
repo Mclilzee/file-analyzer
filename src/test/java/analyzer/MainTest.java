@@ -24,24 +24,37 @@ class MainTest {
     }
 
     @Test
-    void correctPatternFound() {
-        String[] args = {"--naive", "src/test/java/analyzer/pdfTest.pdf", "%PDF-", "PDF document"};
+    void correctPatternFound() throws InterruptedException {
+        String[] args = {"src/test/java/analyzer/pdfTest.pdf", "%PDF-", "PDF document"};
         Main.main(args);
 
-        String output = outputStream.toString();
-        String expected = "PDF document\\r?\\nIt took \\d+(\\.\\d+)? seconds\\r?\\n";
-
-        assertTrue(outputStream.toString().matches(expected));
+        Thread.sleep(500);
+        String expected = "pdfTest.pdf: PDF document" + System.lineSeparator();
+        assertEquals(expected, outputStream.toString());
     }
 
     @Test
-    void patternNotFoundPrintsUnknown() {
-        String[] args = {"--naive", "src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
+    void patternNotFoundPrintsUnknown() throws InterruptedException {
+        String[] args = {"src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
         Main.main(args);
 
-        String expected = "Unknown file type\\r?\\nIt took \\d+(\\.\\d+)? seconds\\r?\\n";
+        Thread.sleep(500);
+        String expected = "pdfTest.pdf: Unknown file type" + System.lineSeparator();
 
-        assertTrue(outputStream.toString().matches(expected));
+        assertEquals(expected, outputStream.toString());
+    }
+
+    @Test
+    void testMultipleDirectories() throws InterruptedException {
+        String[] args = {"src/test/java/analyzer/files/", "%PDF-", "PDF document"};
+        Main.main(args);
+
+        Thread.sleep(500);
+        String expectedFirstFile = "notpdf.txt: Unknown file type" + System.lineSeparator();
+        String expectedSecondFile = "pdfTest.pdf: PDF document" + System.lineSeparator();
+
+        assertTrue(outputStream.toString().contains(expectedFirstFile));
+        assertTrue(outputStream.toString().contains(expectedSecondFile));
     }
 
 }

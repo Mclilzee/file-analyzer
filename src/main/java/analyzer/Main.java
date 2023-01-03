@@ -3,50 +3,57 @@ package analyzer;
 import analyzer.searcher.SearcherFactory;
 import analyzer.searcher.SubstringSearcher;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
-import java.time.Duration;
+import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
-    public static void main(String[] args) {
-        String algorithm = args[0];
-        String content = getContentFromFile(Paths.get(args[1]));
-        String pattern = args[2];
-        String output = args[3];
-        SubstringSearcher searcher = SearcherFactory.getSearcher(algorithm);
+    private static SubstringSearcher searcher = SearcherFactory.getSearcher("");
+    private static ExecutorService executorService = Executors.newCachedThreadPool();
+    private static String output = "";
+    private static String pattern = "";
 
-        Duration startDuration = Duration.ofMillis(System.currentTimeMillis());
-        if (searcher.containsSubstring(content, pattern)) {
-            printOutput(output, startDuration);
-        } else {
-            printOutput("Unknown file type", startDuration);
-        }
+    public static void main(String[] args) {
+        pattern = args[1];
+        output = args[2];
+        Path path = Paths.get(args[0]);
+
+        printFiles(path);
     }
 
-    private static String getContentFromFile(Path path) {
-        try (InputStream inputStream = Files.newInputStream(path)) {
-            return new String(inputStream.readAllBytes());
+    private static void printFiles(Path path) {
+       File file = path.toFile();
+       if (file.isDirectory()) {
+           Arrays.stream(file.listFiles())
+                   .map(File::getPath)
+                   .map(Paths::get)
+                   .forEach(Main::printFiles);
+       } else {
+           executorService.submit(() -> printOutput(file));
+       }
 
+    }
+
+    private static String getContentFromFile(File file) {
+        try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
+            return new String(inputStream.readAllBytes());
         } catch (IOException ex) {
             return "";
         }
     }
 
-    private static void printOutput(String output, Duration startDuration) {
-        Duration duration = Duration.ofMillis(System.currentTimeMillis()).minus(startDuration);
-        String seconds = String.valueOf(duration.toSecondsPart());
-        String milis = String.valueOf(duration.toMillisPart());
-        double time = Double.parseDouble(seconds + "." + milis);
-
-        DecimalFormat decimalFormatter = new DecimalFormat("0");
-        decimalFormatter.setMaximumFractionDigits(3);
-
-        System.out.printf("%s%nIt took %s seconds%n", output, decimalFormatter.format(time));
+    private static void printOutput(File file) {
+        String content = getContentFromFile(file);
+        System.out.print(file.getName() + ": ");
+        if (searcher.containsSubstring(content, pattern)) {
+            System.out.println(output);
+        } else {
+            System.out.println("Unknown file type");
+        }
     }
-
 }

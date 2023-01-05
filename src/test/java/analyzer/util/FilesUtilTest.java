@@ -18,5 +18,26 @@ class FilesUtilTest {
         String actual = FilesUtil.getContentFromFile(path);
         String expected = "this is a test file";
 
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void readNoneTextFilesCorrectly() {
+        Path path = Paths.get("src/test/java/analyzer/util/notText.db");
+
+        String actual = FilesUtil.getContentFromFile(path);
+        String expected = "this is not a text file";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void wrongFilePathReturnsEmptyString() {
+        Path path = Paths.get("invalid/file/path");
+
+        String actual = FilesUtil.getContentFromFile(path);
+        String expected = "";
+
+        assertEquals(expected, actual);
     }
 }

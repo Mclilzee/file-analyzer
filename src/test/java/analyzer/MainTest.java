@@ -25,7 +25,7 @@ class MainTest {
 
     @Test
     void correctPatternFound() throws InterruptedException {
-        String[] args = {"src/test/java/analyzer/pdfTest.pdf", "%PDF-", "PDF document"};
+        String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", "%PDF-", "PDF document"};
         Main.main(args);
 
         Thread.sleep(500);
@@ -35,7 +35,7 @@ class MainTest {
 
     @Test
     void patternNotFoundPrintsUnknown() throws InterruptedException {
-        String[] args = {"src/test/java/analyzer/pdfTest.pdf", "Pattern to not be found", "PDF document"};
+        String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", "Pattern to not be found", "PDF document"};
         Main.main(args);
 
         String expected = "pdfTest.pdf: Unknown file type" + System.lineSeparator();

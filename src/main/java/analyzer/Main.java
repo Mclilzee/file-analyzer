@@ -3,8 +3,10 @@ package analyzer;
 import analyzer.searcher.SearcherFactory;
 import analyzer.searcher.SubstringSearcher;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -14,12 +16,13 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    private static SubstringSearcher searcher = SearcherFactory.getSearcher("");
-    private static ExecutorService executorService = Executors.newCachedThreadPool();
+    private static final SubstringSearcher searcher = SearcherFactory.getSearcher("");
+    private static ExecutorService executorService;
     private static String output = "";
     private static String pattern = "";
 
     public static void main(String[] args) throws InterruptedException {
+        executorService = Executors.newCachedThreadPool();
         pattern = args[1];
         output = args[2];
         Path path = Paths.get(args[0]);

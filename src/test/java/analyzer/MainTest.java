@@ -30,8 +30,7 @@ class MainTest {
         String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", database};
         Main.main(args);
 
-        Thread.sleep(500);
-        String expected = "pdfTest.pdf: PDF document" + System.lineSeparator();
+        String expected = "pdfTest.pdf: Zip archive" + System.lineSeparator();
         assertEquals(expected, outputStream.toString());
     }
 
@@ -51,10 +50,14 @@ class MainTest {
         Main.main(args);
 
         String expectedFirstFile = "notpdf.txt: Unknown file type" + System.lineSeparator();
-        String expectedSecondFile = "pdfTest.pdf: PDF document" + System.lineSeparator();
+        String expectedSecondFile = "pdfTest.pdf: Zip archive" + System.lineSeparator();
+        String expectedThirdFile = "docTest.doc: MS Office Word 2003";
 
-        assertTrue(outputStream.toString().contains(expectedFirstFile));
-        assertTrue(outputStream.toString().contains(expectedSecondFile));
+        String outputString = outputStream.toString();
+
+        assertTrue(outputString.contains(expectedFirstFile));
+        assertTrue(outputString.contains(expectedSecondFile));
+        assertTrue(outputString.contains(expectedThirdFile));
     }
 
 }

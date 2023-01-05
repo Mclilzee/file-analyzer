@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -56,7 +57,12 @@ public class Main {
     }
 
     private static void printOutput(Path path) {
-
+        String content = FilesUtil.getFileContent(path);
+        Optional<String> output = patternDataBase.stream()
+                                                 .filter(database -> searcher.containsSubstring(content, database.pattern()))
+                                                 .sorted()
+                                                 .map(PatternDataBase::output)
+                                                 .findFirst();
+        System.out.println(path.getFileName() + ": " + output.orElse("Unknown file type"));
     }
-
 }

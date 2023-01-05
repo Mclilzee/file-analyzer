@@ -7,7 +7,7 @@ import java.nio.file.Path;
 
 public class FilesUtil {
 
-    public static String getContentFromFile(Path path) {
+    public static String getFileContent(Path path) {
         try (BufferedInputStream inputStream = new BufferedInputStream(Files.newInputStream(path))) {
             return new String(inputStream.readAllBytes());
         } catch (IOException ex) {

@@ -15,7 +15,7 @@ class FilesUtilTest {
     void returnCorrectString() {
         Path path = Paths.get("src/test/java/analyzer/util/testFile.txt");
 
-        String actual = FilesUtil.getContentFromFile(path);
+        String actual = FilesUtil.getFileContent(path);
         String expected = "this is a test file";
 
         assertEquals(expected, actual);
@@ -25,7 +25,7 @@ class FilesUtilTest {
     void readNoneTextFilesCorrectly() {
         Path path = Paths.get("src/test/java/analyzer/util/notText.db");
 
-        String actual = FilesUtil.getContentFromFile(path);
+        String actual = FilesUtil.getFileContent(path);
         String expected = "this is not a text file";
 
         assertEquals(expected, actual);
@@ -35,7 +35,7 @@ class FilesUtilTest {
     void wrongFilePathReturnsEmptyString() {
         Path path = Paths.get("invalid/file/path");
 
-        String actual = FilesUtil.getContentFromFile(path);
+        String actual = FilesUtil.getFileContent(path);
         String expected = "";
 
         assertEquals(expected, actual);

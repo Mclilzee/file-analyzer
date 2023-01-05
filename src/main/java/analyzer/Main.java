@@ -2,6 +2,7 @@ package analyzer;
 
 import analyzer.searcher.SearcherFactory;
 import analyzer.searcher.SubstringSearcher;
+import analyzer.util.FilesUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -52,6 +53,8 @@ public class Main {
     }
 
     private static List<PatternDataBase> loadDataBase(Path path) {
-        return null;
+        return FilesUtil.getFileContent(path).lines()
+                        .map(PatternDataBaseFactory::convertToPatternDatabase)
+                        .toList();
     }
 }

@@ -18,14 +18,13 @@ public class Main {
 
     private static final SubstringSearcher searcher = SearcherFactory.getSearcher("");
     private static ExecutorService executorService;
-    private static String output = "";
-    private static String pattern = "";
+    private static PatternDataBase patternDataBase;
 
     public static void main(String[] args) throws InterruptedException {
         executorService = Executors.newCachedThreadPool();
-        pattern = args[1];
-        output = args[2];
+
         Path path = Paths.get(args[0]);
+        patternDataBase = loadDataBase(Paths.get(args[1]));
 
         printFiles(path);
 
@@ -61,5 +60,9 @@ public class Main {
         } else {
             System.out.println(file.getName() + ": Unknown file type");
         }
+    }
+
+    private static PatternDataBase loadDataBase(Path path) {
+
     }
 }

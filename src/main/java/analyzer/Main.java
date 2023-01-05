@@ -3,22 +3,22 @@ package analyzer;
 import analyzer.searcher.SearcherFactory;
 import analyzer.searcher.SubstringSearcher;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 public class Main {
 
     private static final SubstringSearcher searcher = SearcherFactory.getSearcher("");
     private static ExecutorService executorService;
-    private static PatternDataBase patternDataBase;
+    private static List<PatternDataBase> patternDataBase;
 
     public static void main(String[] args) throws InterruptedException {
         executorService = Executors.newCachedThreadPool();
@@ -33,36 +33,26 @@ public class Main {
     }
 
     private static void printFiles(Path path) {
-       File file = path.toFile();
-       if (file.isDirectory()) {
-           Arrays.stream(file.listFiles())
-                   .map(File::getPath)
-                   .map(Paths::get)
-                   .forEach(Main::printFiles);
+       if (Files.isDirectory(path)) {
+           printFilesInDirectory(path);
        } else {
-           executorService.execute(() -> printOutput(file));
+           executorService.execute(() -> printOutput(path));
        }
 
     }
 
-    private static String getContentFromFile(File file) {
-        try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
-            return new String(inputStream.readAllBytes());
+    private static void printFilesInDirectory(Path path) {
+        try (Stream<Path> paths = Files.list(path)) {
+            paths.forEach(Main::printFiles);
         } catch (IOException ex) {
-            return "";
+            System.out.println("Failed to retrieve paths for " + path);
         }
     }
 
-    private static void printOutput(File file) {
-        String content = getContentFromFile(file);
-        if (searcher.containsSubstring(content, pattern)) {
-            System.out.println(file.getName() + ": " + output);
-        } else {
-            System.out.println(file.getName() + ": Unknown file type");
-        }
+    private static void printOutput(Path path) {
     }
 
-    private static PatternDataBase loadDataBase(Path path) {
-
+    private static List<PatternDataBase> loadDataBase(Path path) {
+        return null;
     }
 }

@@ -32,6 +32,12 @@ public class Main {
         while (!executorService.awaitTermination(100, TimeUnit.MILLISECONDS)) {}
     }
 
+    private static List<PatternDataBase> loadDataBase(Path path) {
+        return FilesUtil.getFileContent(path).lines()
+                        .map(PatternDataBaseFactory::convertToPatternDatabase)
+                        .toList();
+    }
+
     private static void printFiles(Path path) {
        if (Files.isDirectory(path)) {
            printFilesInDirectory(path);
@@ -50,11 +56,7 @@ public class Main {
     }
 
     private static void printOutput(Path path) {
+
     }
 
-    private static List<PatternDataBase> loadDataBase(Path path) {
-        return FilesUtil.getFileContent(path).lines()
-                        .map(PatternDataBaseFactory::convertToPatternDatabase)
-                        .toList();
-    }
 }

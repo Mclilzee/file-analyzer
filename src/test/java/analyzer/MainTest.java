@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainTest {
 
+    String database = "src/test/java/analyzer/patterns.db";
     static ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     @BeforeAll
@@ -25,7 +27,7 @@ class MainTest {
 
     @Test
     void correctPatternFound() throws InterruptedException {
-        String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", "%PDF-", "PDF document"};
+        String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", database};
         Main.main(args);
 
         Thread.sleep(500);
@@ -35,7 +37,7 @@ class MainTest {
 
     @Test
     void patternNotFoundPrintsUnknown() throws InterruptedException {
-        String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", "Pattern to not be found", "PDF document"};
+        String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", "1;none existence pattern;some output"};
         Main.main(args);
 
         String expected = "pdfTest.pdf: Unknown file type" + System.lineSeparator();
@@ -45,7 +47,7 @@ class MainTest {
 
     @Test
     void testMultipleDirectories() throws InterruptedException {
-        String[] args = {"src/test/java/analyzer/files/", "%PDF-", "PDF document"};
+        String[] args = {"src/test/java/analyzer/files/", database};
         Main.main(args);
 
         String expectedFirstFile = "notpdf.txt: Unknown file type" + System.lineSeparator();

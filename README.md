@@ -1,6 +1,6 @@
 # File Analyzer
 
-Build project with `Gradle build`
+Build project with `gradle build`
 Launch it using `java -jar ./build/libs/file-type-analyzer "Path to file" "Path to database"` 
 
 Path to file or Folder, such as a PDF file while the database is the pattern to look for in files, an example database pattern is as follow.

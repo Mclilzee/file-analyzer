@@ -1,10 +1,15 @@
 # File Analyzer
 
+Require Java version 17+ <a href="https://www.oracle.com/de/java/technologies/downloads/">Java download Link</a>
+Requires Gradle build tools <a href="https://gradle.org/install/">Gradle Installation Walkthrough</a>
+
 Build project with `gradle build`
 Launch it using `java -jar ./build/libs/file-type-analyzer "Path to file" "Path to database"` 
 
-Path to file or Folder, such as a PDF file while the database is the pattern to look for in files, an example database pattern is as follow.
-Folder can be provided instead of a single file, it will recursively take all files inside a nest of folders.
+Path to file or Folder, such as a PDF file while the database is the pattern to look for in files.
+Note : Folder can be provided instead of a single file, it will recursively take all files inside a nest of folders.
+
+Pattern Format :
 ```
 1;"%PDF-";"PDF document"
 2;"pmview";"PCP pmview config"

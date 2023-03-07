@@ -38,3 +38,13 @@ Placeholder example-pattern.db is provided.
 
 Example :
 
+```
+$ java -jar build/libs/file-type-analyzer-1.0.jar example-Folder example-pattern.db
+
+Cats8.zip: Zip archive
+prices.xls: Unknown file type
+essay.doc: Zip archive
+laptop-pic.jpg: Zip archive
+Alice_in_Wonderland.pdf: PDF document
+Book.pdf: PDF document
+```

@@ -22,6 +22,10 @@ public class Main {
     private static List<PatternDataBase> patternDataBase;
 
     public static void main(String[] args) throws InterruptedException {
+        if (args.length == 0) {
+            System.out.println("Need to pass the file path as Command-Line argument");
+            System.exit(-1);
+        }
         executorService = Executors.newCachedThreadPool();
 
         Path path = Paths.get(args[0]);

@@ -22,7 +22,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         if (args.length < 2) {
-                    System.out.print("Need to provide command line arguemnts.\n" +
+                    System.out.print("Need to provide command line arguments.\n" +
                             "First argument is the file path to read\n" +
                             "Second argument is the path to database of semicolon separated" +
                             " value from priority, the pattern to find and the output to print if path found.");
@@ -33,6 +33,7 @@ public class Main {
         Path path = Paths.get(args[0]);
         patternDataBase = loadDataBase(Paths.get(args[1]));
 
+        System.out.println();
         printFiles(path);
 
         executorService.shutdown();

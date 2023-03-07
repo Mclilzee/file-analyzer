@@ -30,7 +30,7 @@ class MainTest {
         String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", database};
         Main.main(args);
 
-        String expected = "pdfTest.pdf: Zip archive" + System.lineSeparator();
+        String expected = System.lineSeparator() + "pdfTest.pdf: PDF document" + System.lineSeparator();
         assertEquals(expected, outputStream.toString());
     }
 
@@ -39,7 +39,7 @@ class MainTest {
         String[] args = {"src/test/java/analyzer/files/pdfTest.pdf", "1;none existence pattern;some output"};
         Main.main(args);
 
-        String expected = "pdfTest.pdf: Unknown file type" + System.lineSeparator();
+        String expected = System.lineSeparator() + "pdfTest.pdf: Unknown file type" + System.lineSeparator();
 
         assertEquals(expected, outputStream.toString());
     }
@@ -50,7 +50,7 @@ class MainTest {
         Main.main(args);
 
         String expectedFirstFile = "notpdf.txt: Unknown file type" + System.lineSeparator();
-        String expectedSecondFile = "pdfTest.pdf: Zip archive" + System.lineSeparator();
+        String expectedSecondFile = "pdfTest.pdf: PDF document" + System.lineSeparator();
         String expectedThirdFile = "docTest.doc: MS Office Word 2003";
 
         String outputString = outputStream.toString();

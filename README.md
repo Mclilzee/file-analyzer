@@ -27,18 +27,14 @@ Pattern Format :
 
 The database follow pattern as semicolon separated values
 
-- First value is priority, in case the same pattern can be found in multiple file types, than priority tells it which one it should consider first before it moves on to the next one.
-Higher priority means will be considered first.
+- First value is priority, in case the same pattern can be found in multiple file types, than priority tells it which one it should consider first before it moves on to the next one. Higher number means will be considered first.
 
-- Second is the pattern to look for.
+- Second is the pattern to look for inside the file.
 
 - Third is the output to print if such pattern found.
 
 The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
-Placeholder example-pattern.db is provided, and a test PDF file.
+Placeholder example-pattern.db is provided.
 
 Example :
-`java -jar .\build\libs\file-type-analyzer-1.0.jar .\Alice_in_Wonderland.pdf .\example-pattern.db`
-
-Will print out Alice_in_Wonderland.pdf: Zip Archive. because PK was found in the pattern, changing the priority of PDF to higher such as 5+, will make it be recognized as PDF Document
 

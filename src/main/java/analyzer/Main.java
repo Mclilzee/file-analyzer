@@ -16,14 +16,16 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 public class Main {
-
     private static final SubstringSearcher searcher = SearcherFactory.getSearcher("");
     private static ExecutorService executorService;
     private static List<PatternDataBase> patternDataBase;
 
     public static void main(String[] args) throws InterruptedException {
-        if (args.length == 0) {
-            System.out.println("Need to pass the file path as Command-Line argument");
+        if (args.length < 2) {
+                    System.out.print("Need to provide command line arguemnts.\n" +
+                            "First argument is the file path to read\n" +
+                            "Second argument is the path to database of semicolon separated" +
+                            " value from priority, the pattern to find and the output to print if path found.");
             System.exit(-1);
         }
         executorService = Executors.newCachedThreadPool();

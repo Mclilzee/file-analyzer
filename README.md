@@ -1,13 +1,19 @@
 # File Analyzer
 
 - Require Java version 17+ <a href="https://www.oracle.com/de/java/technologies/downloads/">Java download Link</a>
+
+# Build Project from scrach - Requires Gradle
 - Requires Gradle build tools <a href="https://gradle.org/install/">Gradle Installation Walkthrough</a>
+- Build project with `$ gradle build`
+- Project will be found in `./build/libs/` directory.
 
-Build project with `$ gradle build`
+# Download pre-built project - Does not require Gradle
+- <a href="./release/file-type-analyzer-1.0.jar">Download Jar File</a>
 
-Launch project using `$ java -jar ./build/libs/file-type-analyzer "Path to file" "Path to database"` 
-
-Path to file or Folder, such as a PDF file while the database is the pattern to look for in files.
+# Launching Project
+- Launch project using `$ java -jar ./build/libs/file-type-analyzer "Path to file" "Path to database"`
+  Path to file or Folder, such as a PDF file while the database is the pattern to look for in files.
+ 
 Note : Folder can be provided instead of a single file, it will recursively take all files inside a nest of folders.
 
 Pattern Format :

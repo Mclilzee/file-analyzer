@@ -6,13 +6,13 @@ File analyzer to look for patterns inside files, searching bytes output stream b
 The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
 Placeholder example-pattern.db is provided.
 
+# Download pre-built project - Does not require Gradle
+- <a href="https://github.com/Mclilzee/file-analyzer/raw/main/release/file-type-analyzer-1.0.jar">Download Jar File</a>
+
 # Build Project from scratch - Requires Gradle
 - Requires Gradle build tools <a href="https://gradle.org/install/">Gradle Installation Walkthrough</a>
 - Build project with `$ gradle build`
 - Project will be found in `./build/libs/` directory.
-
-# Download pre-built project - Does not require Gradle
-- <a href="https://github.com/Mclilzee/file-analyzer/raw/main/release/file-type-analyzer-1.0.jar">Download Jar File</a>
 
 # Launching Project
 - Launch project using `$ java -jar ./build/libs/file-type-analyzer "Path to file" "Path to database"`

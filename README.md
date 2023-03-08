@@ -12,7 +12,7 @@ Placeholder example-pattern.db is provided.
 - Project will be found in `./build/libs/` directory.
 
 # Download pre-built project - Does not require Gradle
-- <a href="./release/file-type-analyzer-1.0.jar">Download Jar File</a>
+- <a href="https://github.com/Mclilzee/file-analyzer/raw/main/release/file-type-analyzer-1.0.jar">Download Jar File</a>
 
 # Launching Project
 - Launch project using `$ java -jar ./build/libs/file-type-analyzer "Path to file" "Path to database"`

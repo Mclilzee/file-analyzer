@@ -1,8 +1,12 @@
 # File Analyzer
-
 - Require Java version 17+ <a href="https://www.oracle.com/de/java/technologies/downloads/">Java download Link</a>
 
-# Build Project from scrach - Requires Gradle
+File analyzer to look for patterns inside files, searching bytes output stream binary to determen the type of file provided inside a foler, or stand alone files.
+
+The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
+Placeholder example-pattern.db is provided.
+
+# Build Project from scratch - Requires Gradle
 - Requires Gradle build tools <a href="https://gradle.org/install/">Gradle Installation Walkthrough</a>
 - Build project with `$ gradle build`
 - Project will be found in `./build/libs/` directory.
@@ -16,7 +20,7 @@
  
 Note : Folder can be provided instead of a single file, it will recursively take all files inside a nest of folders.
 
-Pattern Format :
+# Pattern Format
 ```
 1;"%PDF-";"PDF document"
 2;"pmview";"PCP pmview config"
@@ -39,9 +43,6 @@ The database follow pattern as semicolon separated values
 - Second is the pattern to look for inside the file.
 
 - Third is the output to print if such pattern found.
-
-The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
-Placeholder example-pattern.db is provided.
 
 # Example Usage
 

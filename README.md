@@ -43,7 +43,7 @@ The database follow pattern as semicolon separated values
 The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
 Placeholder example-pattern.db is provided.
 
-Example :
+# Example Usage
 
 ```
 $ java -jar build/libs/file-type-analyzer-1.0.jar example-Folder example-pattern.db

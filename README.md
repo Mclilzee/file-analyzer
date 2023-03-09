@@ -43,7 +43,7 @@ The database follow pattern as semicolon separated values
 # Example Usage
 
 ```
-$ ./gradlew run --args"example-Folder example-pattern.db"
+$ ./gradlew run --args="example-Folder example-pattern.db"
 
 Cats8.zip: Zip archive
 prices.xls: Unknown file type

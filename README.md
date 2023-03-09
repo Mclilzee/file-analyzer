@@ -11,7 +11,7 @@ Placeholder example-pattern.db is provided.
 # Build - Run Project
 - Clone repository and navigate into repo's directory
 - Run project with `$ ./gradlew run --args="path/to/file path/to/pattern/database`
-- `--arg=""` takes arguments saparated by spaces, if your path file include spaces in the name, use single quotes.
+- `--argr=""` takes arguments separated by spaces, if your path file include spaces in the name, use single quotes.
 Example: `--args="'File with space in name' other/argument`
  
 Note : Folder can be provided instead of a single file, it will recursively take all files inside a nest of folders.

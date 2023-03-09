@@ -1,6 +1,6 @@
 # File Analyzer
 
-File analyzer to look for patterns inside files, searching bytes output stream binary to determen the type of file provided inside a foler, or stand alone files.
+File analyzer to look for patterns inside files, searching bytes output stream binary to determen the type of file provided inside a folder, or stand alone files.
 
 The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
 Placeholder example-pattern.db is provided.
@@ -31,6 +31,7 @@ Note : Folder can be provided instead of a single file, it will recursively take
 9;"ftypjp2";"ISO Media JPEG 2000"
 9;"ftypiso2";"ISO Media MP4 Base Media v2"
 ```
+An example pattern is provided in root directory for testing
 
 The database follow pattern as semicolon separated values
 

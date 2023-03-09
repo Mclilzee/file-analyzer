@@ -1,9 +1,13 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'analyzer'
 version '1.0'
+
+application {
+    mainClass = "analyzer.Main"
+}
 
 repositories {
     mavenCentral()
@@ -16,10 +20,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-jar {
-    manifest {
-        attributes "Main-Class": "analyzer.Main"
-    }
 }

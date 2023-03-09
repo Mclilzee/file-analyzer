@@ -1,6 +1,6 @@
 # File Analyzer
 
-File analyzer to look for patterns inside files, searching bytes output stream binary to determen the type of file provided inside a foler, or stand alone files.
+File analyzer to look for patterns inside files, searching bytes output stream binary to determen the type of file provided inside a folder, or stand alone files.
 
 The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
 Placeholder example-pattern.db is provided.

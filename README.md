@@ -31,6 +31,7 @@ Note : Folder can be provided instead of a single file, it will recursively take
 9;"ftypjp2";"ISO Media JPEG 2000"
 9;"ftypiso2";"ISO Media MP4 Base Media v2"
 ```
+An example pattern is provided in root directory for testing
 
 The database follow pattern as semicolon separated values
 

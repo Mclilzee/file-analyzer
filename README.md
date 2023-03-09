@@ -1,12 +1,14 @@
 # File Analyzer
-- Require Java version 17+ <a href="https://www.oracle.com/de/java/technologies/downloads/">Java download Link</a>
 
 File analyzer to look for patterns inside files, searching bytes output stream binary to determen the type of file provided inside a foler, or stand alone files.
 
 The algorithm make use of multi threads to search the patterns for many files at the same time, when folder is provided.
 Placeholder example-pattern.db is provided.
 
-# Build / Run Project
+# Requirement
+- Java version 17+ <a href="https://www.oracle.com/de/java/technologies/downloads/">Java download Link</a>
+
+# Build - Run Project
 - Clone repository and navigate into repo's directory
 - Run project with `$ ./gradlew -q run --args="path/to/file path/to/pattern/database`
 - `--arg=""` takes arguments saparated by spaces, if your path file include spaces in the name, use single quotes.

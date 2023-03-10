@@ -43,7 +43,7 @@ The database follow pattern as semicolon separated values
 
 # Example Usage
 
-```
+```console
 $ ./gradlew run --args="example-folder example-pattern.db"
 
 Cats8.zip: Zip archive
